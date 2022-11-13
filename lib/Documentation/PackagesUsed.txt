@@ -1,0 +1,6 @@
+screenUtil:
+    for getting same constraints as figma
+
+
+<uses-permission android:name="android.permission.INTERNET"/>
+use this if you use dynamic fonts:google_fonts
