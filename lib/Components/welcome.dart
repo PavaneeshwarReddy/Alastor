@@ -1,4 +1,6 @@
+import 'package:alastor/Components/enterPhoneno.dart';
 import 'package:alastor/Themes/colors.dart';
+import 'package:alastor/Themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,20 +21,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             body: Container(
       child: Stack(
         children: [
-          Container(
-            child: Image.asset(
-              'images/mapsLight.png',
-              width: 375.w,
-              height: 222.h,
-            ),
-            margin: EdgeInsets.only(top: 648.h),
-          ),
 
           //brand logo
           Container(
             margin: EdgeInsets.only(left: 40.w, top: 30.h),
             child: Image.asset(
-              'images/whitebrand.png',
+              Theme.of(context).scaffoldBackgroundColor==Colors.white?'images/whitebrand.png':'images/darkbrand.png',
               width: 147.w,
               height: 50.h,
             ),
@@ -46,9 +40,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
           //header text of home page
           Container(
-            width: 294.w,
+            width: 284.w,
             height: 71.h,
-            margin: EdgeInsets.only(left: 40.w, top: 540.h),
+            margin: EdgeInsets.only(left: 40.w, top: 530.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -87,12 +81,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           Container(
             width: 300.w,
             height: 40.h,
-            margin: EdgeInsets.only(top: 618.h, left: 40.w),
+            margin: EdgeInsets.only(top: 598.h, left: 40.w),
             decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(50)),
             child: InkWell(
-                onTap: () {},
+                onTap: () {
+                 Navigator.pushNamed(context,'/phoneno');
+                },
                 child: Center(
                   child: Text(
                     "login with phone number",
@@ -105,7 +101,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             width: 130.w,
             height: 40.h,
             padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
-            margin: EdgeInsets.only(left: 40.w, top: 673.h),
+            margin: EdgeInsets.only(left: 40.w, top: 653.h),
             decoration: BoxDecoration(
                 color: AlastorColors.pink,
                 borderRadius: BorderRadius.circular(50)),
@@ -130,7 +126,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             width: 130.w,
             height: 40.h,
             padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
-            margin: EdgeInsets.only(left: 209.w, top: 673.h),
+            margin: EdgeInsets.only(left: 209.w, top: 653.h),
             decoration: BoxDecoration(
                 color: AlastorColors.ashBlue,
                 borderRadius: BorderRadius.circular(50)),
@@ -154,11 +150,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           Container(
             width: 295.w,
             height: 40.h,
-            margin: EdgeInsets.only(left: 30.w, top: 725.h),
+            margin: EdgeInsets.only(left: 40.w, top: 705.h),
             child: Row(
               children: [
                 Checkbox(
                   shape: CircleBorder(),
+                  side: BorderSide(color: Theme.of(context).scaffoldBackgroundColor==Colors.white?AlastorColors.checkBoxWhite:AlastorColors.checkBoxDark),
                   value: isChecked,
                   onChanged: (newBool) {
                     setState(() {
@@ -173,7 +170,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           "By selecting you are confirming that you have read and\n agree with the",
                       style: Theme.of(context).textTheme.bodyText1),
                   TextSpan(
-                      text: "terms & conditions,",
+                      text: " terms & conditions,",
                       style: GoogleFonts.inriaSans(
                           fontSize: 11,
                           color: AlastorColors.blue1,

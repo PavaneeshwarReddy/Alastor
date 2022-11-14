@@ -4,8 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AlastorTheme
 {
+
+
     static ThemeData LightTheme()
     {
+
       return ThemeData(
           scaffoldBackgroundColor: Colors.white,
           primaryColor: Colors.black,
@@ -13,12 +16,16 @@ class AlastorTheme
           textTheme: TextTheme(
             headline1: GoogleFonts.inriaSans(fontSize: 28,color: Colors.black),
             headline2: GoogleFonts.inriaSans(fontSize: 16,color: Colors.white),
+            headline3: GoogleFonts.inriaSans(fontSize: 24,color: AlastorColors.grey1),
             bodyText1: GoogleFonts.inriaSans(fontSize: 11,color: AlastorColors.grey1)
           )
       );
     }
-    static ThemeData DarkTheme()
+    static ThemeData  DarkTheme()
     {
+
+
+
       return ThemeData(
           scaffoldBackgroundColor: Colors.black,
           primaryColor: Colors.white,
