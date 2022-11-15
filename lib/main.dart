@@ -27,16 +27,18 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
         designSize: const Size(375, 812),
         builder: (context, child) {
-          return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: AlastorTheme.LightTheme(),
-              darkTheme: AlastorTheme.DarkTheme(),
-              themeMode: ThemeMode.system,
-              initialRoute: '/',
-          routes: {
-                '/':(context)=>WelcomeScreen(),
-                '/phoneno':(context)=>EnterPhoneno(),
-          },);
+          return SafeArea(
+            child: MaterialApp(
+                debugShowCheckedModeBanner: false,
+                theme: AlastorTheme.LightTheme(),
+                darkTheme: AlastorTheme.DarkTheme(),
+                themeMode: ThemeMode.dark,
+                initialRoute: '/',
+            routes: {
+                  '/':(context)=>WelcomeScreen(),
+                  '/phoneno':(context)=>EnterPhoneno(),
+            },),
+          );
         });
   }
 }

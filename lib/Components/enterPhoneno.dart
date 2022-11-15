@@ -33,7 +33,7 @@ class _EnterPhonenoState extends State<EnterPhoneno> {
                   Navigator.pushNamed(context, '/');
                 },
                 child: Image.asset(
-                  'images/backButton.png',
+                  Theme.of(context).primaryColor==Colors.black?'images/backButton.png':'images/backButtonDark.png',
                   width: 24.w,
                   height: 24.h,
                 ),
@@ -43,7 +43,7 @@ class _EnterPhonenoState extends State<EnterPhoneno> {
               margin: EdgeInsets.only(top: 65.h, left: 35.w),
               child: Text(
                 "Enter your phone no",
-                style: AlastorTheme.LightTheme().textTheme.headline1,
+                style: Theme.of(context).textTheme.headline1,
               ),
             ),
             Container(
@@ -57,11 +57,12 @@ class _EnterPhonenoState extends State<EnterPhoneno> {
             ),
             Container(
 
-              margin: EdgeInsets.only(top: 270.h, left: 47.w),
+              alignment: Alignment.bottomRight,
+              // margin: EdgeInsets.only(top: 270.h, left: 47.w),
               child: Image.asset(
                 'images/phonenoBackground.png',
-                width: 625.w,
-                height: 616.h,
+                // width: 625.w,
+                // height: 616.h,
               ),
             ),
             GestureDetector(
@@ -95,7 +96,7 @@ class _EnterPhonenoState extends State<EnterPhoneno> {
               
               margin: EdgeInsets.only(top: 150.h, left: 90.w),
               child:  TextFormField(
-                
+                    style: Theme.of(context).textTheme.headline3,
                     cursorColor: AlastorColors.grey1,
                     keyboardType: TextInputType.number,
                     //add cursor height after
@@ -104,7 +105,7 @@ class _EnterPhonenoState extends State<EnterPhoneno> {
 
                       hintText:dialcode,
                       contentPadding: EdgeInsets.all(10),
-                      hintStyle: AlastorTheme.LightTheme().textTheme.headline3,
+                      hintStyle: Theme.of(context).textTheme.headline3,
                       border:AlastorStyles.getOutlineInputBorder1(context),
                       focusedBorder:AlastorStyles.getOutlineInputBorder1(context),
                       enabledBorder:AlastorStyles.getOutlineInputBorder1(context),

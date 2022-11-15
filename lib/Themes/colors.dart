@@ -7,6 +7,7 @@ class AlastorColors
    static const  ashBlue=Color.fromRGBO(215, 221, 233, 1);
    static const grey1=Color.fromRGBO(95, 95, 95, 1);
    static const grey2=Color.fromRGBO(0, 0, 0, 0.2);
+   static const grey3=Color.fromRGBO(255, 255, 255, 0.5);
    static const green1=Color.fromRGBO(52, 167, 81, 1);
    static const red1=Color.fromRGBO(238, 63, 53, 1);
    static const yellow1=Color.fromRGBO(248, 187, 21, 1);

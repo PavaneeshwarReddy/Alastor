@@ -1,3 +1,4 @@
+import 'package:alastor/Animations/animations.dart';
 import 'package:alastor/Components/enterPhoneno.dart';
 import 'package:alastor/Themes/colors.dart';
 import 'package:alastor/Themes/themes.dart';
@@ -87,7 +88,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 borderRadius: BorderRadius.circular(50)),
             child: InkWell(
                 onTap: () {
-                 Navigator.pushNamed(context,'/phoneno');
+                Navigator.of(context).push(
+                  MyCustomPageTransition(EnterPhoneno())
+                );
                 },
                 child: Center(
                   child: Text(

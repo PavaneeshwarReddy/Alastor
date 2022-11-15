@@ -32,7 +32,8 @@ class AlastorTheme
           textTheme: TextTheme(
               headline1: GoogleFonts.inriaSans(fontSize: 28,color: Colors.white),
               headline2: GoogleFonts.inriaSans(fontSize: 16,color: Colors.black),
-              bodyText1: GoogleFonts.inriaSans(fontSize: 11,color: AlastorColors.grey1)
+              bodyText1: GoogleFonts.inriaSans(fontSize: 11,color: AlastorColors.grey1),
+              headline3: GoogleFonts.inriaSans(fontSize: 24,color: AlastorColors.grey1),
           )
       );
     }
