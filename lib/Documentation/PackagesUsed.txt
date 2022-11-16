@@ -7,3 +7,5 @@ use this if you use dynamic fonts:google_fonts
 
 
 sharedPreferences: used for storing darkMode and LigthMode
+
+pinput:for creating a pin input field
