@@ -1,24 +1,25 @@
-
-import 'package:alastor/Themes/colors.dart';
+import 'package:alastor/Controllers/otpScreenApi.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
+
+import '../Themes/colors.dart';
 import '../Themes/styles.dart';
 
-class otpScreen extends StatefulWidget {
-  const otpScreen({super.key});
+class otpScreen extends StatelessWidget {
+  otpScreen({super.key});
 
-  @override
-  State<otpScreen> createState() => _otpScreenState();
-}
-
-class _otpScreenState extends State<otpScreen> {
-  TextEditingController  _pin = TextEditingController();
-  bool valid=false;
-
+  TextEditingController _pin = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    //this is how we pass named route arguments
+    final String _phoneno =
+        (ModalRoute.of(context)?.settings.arguments as Map)["phoneno"];
+
     return SafeArea(
       child: WillPopScope(
         onWillPop: () async {
@@ -30,25 +31,27 @@ class _otpScreenState extends State<otpScreen> {
           body: Stack(
             children: [
               //this is for pin input
-            Container(
-              margin: EdgeInsets.only(top: 140.h,left: 35.w),
-              child:   Column(
-                children: [
-                  Pinput(
-
-                        defaultPinTheme:Theme.of(context).primaryColor==Colors.black?AlastorStyles.getLightPinTheme(context):AlastorStyles.getDarkPinTheme(context),
-                        keyboardType: TextInputType.number,
-                        controller: _pin,
-
-                  ),
-                ],
+              Container(
+                margin: EdgeInsets.only(top: 140.h, left: 35.w),
+                child: Column(
+                  children: [
+                    Pinput(
+                      defaultPinTheme:
+                          Theme.of(context).primaryColor == Colors.black
+                              ? AlastorStyles.getLightPinTheme(context)
+                              : AlastorStyles.getDarkPinTheme(context),
+                      keyboardType: TextInputType.number,
+                      controller: _pin,
+                    ),
+                  ],
+                ),
               ),
-            ),
               Container(
                 margin: EdgeInsets.only(top: 35.h, left: 35.w),
                 child: InkWell(
                   onTap: () {
-                    Navigator.popUntil(context, ModalRoute.withName('/phoneno'));
+                    Navigator.popUntil(
+                        context, ModalRoute.withName('/phoneno'));
                   },
                   child: Image.asset(
                     Theme.of(context).primaryColor == Colors.black
@@ -70,45 +73,72 @@ class _otpScreenState extends State<otpScreen> {
               Container(
                 alignment: Alignment.bottomRight,
                 margin: EdgeInsets.only(top: 320.h),
-                child: Image.asset(Theme.of(context).primaryColor==Colors.black?'images/otpBackground.png':'images/otpDark.png'),
+                child: Image.asset(
+                    Theme.of(context).primaryColor == Colors.black
+                        ? 'images/otpBackground.png'
+                        : 'images/otpDark.png'),
               ),
+
               Container(
-                margin: EdgeInsets.only(left: 40.w,top: 195.h),
-                child: Text("invalid otp,please enter a valid otp",style: GoogleFonts.inriaSans(color: AlastorColors.red2,fontSize: 11),),
+                margin: EdgeInsets.only(left: 40.w, top: 195.h),
+                child: Text(
+                  "invalid otp,please enter a valid otp",
+                  style: GoogleFonts.inriaSans(
+                      color: AlastorColors.red2, fontSize: 11),
+                ),
               ),
+
               GestureDetector(
-                onTap: (){
-                  Navigator.pushNamed(context, '/404');
+                onTap: () async {
+                  print(_pin.text.toString());
+                  bool otpVerified = await completeOtpRequest.verifyOtp(
+                      _phoneno, _pin.text.toString());
+
+                  if (otpVerified) {
+                    Navigator.pushNamed(context, '/404');
+                  } else {
+                    print("Otp invalid");
+                  }
                 },
                 child: Container(
-                  margin: EdgeInsets.only(top: 210.h,left: 35.w),
+                  margin: EdgeInsets.only(top: 210.h, left: 35.w),
                   width: 180.w,
                   height: 28.h,
-
-                  decoration: AlastorStyles.getBoxDecoration1(AlastorColors.ashBlue),
-                  child: Center(child: Text("verify otp",style: GoogleFonts.inriaSans(fontSize: 16),),),
+                  decoration:
+                      AlastorStyles.getBoxDecoration1(AlastorColors.ashBlue),
+                  child: Center(
+                    child: Text(
+                      "verify otp",
+                      style: GoogleFonts.inriaSans(fontSize: 16),
+                    ),
+                  ),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 40.w,top: 255.h),
-                child: Text("haven't received an otp?",style: GoogleFonts.inriaSans(color: AlastorColors.grey1,fontSize: 11),)
-              ),
+                  margin: EdgeInsets.only(left: 40.w, top: 255.h),
+                  child: Text(
+                    "haven't received an otp?",
+                    style: GoogleFonts.inriaSans(
+                        color: AlastorColors.grey1, fontSize: 11),
+                  )),
               GestureDetector(
                 child: Container(
-                  margin: EdgeInsets.only(top: 270.h,left: 35.w),
+                  margin: EdgeInsets.only(top: 270.h, left: 35.w),
                   width: 180.w,
                   height: 28.h,
-
-                  decoration: AlastorStyles.getBoxDecoration1(AlastorColors.yellow2),
-                  child: Center(child: Text("resend otp",style: GoogleFonts.inriaSans(fontSize: 16)),),
+                  decoration:
+                      AlastorStyles.getBoxDecoration1(AlastorColors.yellow2),
+                  child: Center(
+                    child: Text("resend otp",
+                        style: GoogleFonts.inriaSans(fontSize: 16)),
+                  ),
                 ),
               )
-
-
             ],
           ),
         ),
       ),
     );
+    ;
   }
 }

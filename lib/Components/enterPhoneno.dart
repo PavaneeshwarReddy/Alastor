@@ -1,3 +1,6 @@
+import 'package:alastor/Components/otpScreen.dart';
+import 'package:alastor/Components/welcome.dart';
+import 'package:alastor/Controllers/otpScreenApi.dart';
 import 'package:alastor/Themes/colors.dart';
 import 'package:alastor/Themes/styles.dart';
 import 'package:alastor/Themes/themes.dart';
@@ -103,6 +106,7 @@ class _EnterPhonenoState extends State<EnterPhoneno> {
                 height: 50.h,
                 margin: EdgeInsets.only(top: 150.h, left: 90.w),
                 child: TextFormField(
+                  controller: _phoneNo,
                   style: Theme.of(context).textTheme.headline3,
                   cursorColor: AlastorColors.grey1,
                   keyboardType: TextInputType.number,
@@ -121,8 +125,14 @@ class _EnterPhonenoState extends State<EnterPhoneno> {
                 ),
               ),
               GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/otpscreen');
+                onTap: () async {
+                  bool otpSent = await completeOtpRequest
+                      .sendOtpTPhoneNo(dialcode + _phoneNo.text.toString());
+                  otpSent
+                      ? Navigator.pushNamed(context, '/otpscreen', arguments: {
+                          'phoneno': dialcode + _phoneNo.text.toString()
+                        })
+                      : print("Not sent");
                 },
                 child: Container(
                     width: 95.w,
