@@ -10,16 +10,20 @@ import 'package:pinput/pinput.dart';
 import '../Themes/colors.dart';
 import '../Themes/styles.dart';
 
-class otpScreen extends StatelessWidget {
-  otpScreen({super.key});
+class otpScreen extends StatefulWidget {
+  const otpScreen({super.key});
 
+  @override
+  State<otpScreen> createState() => _otpScreenState();
+}
+
+class _otpScreenState extends State<otpScreen> {
   TextEditingController _pin = TextEditingController();
+  bool isVerified = true;
   @override
   Widget build(BuildContext context) {
-    //this is how we pass named route arguments
     final String _phoneno =
         (ModalRoute.of(context)?.settings.arguments as Map)["phoneno"];
-
     return SafeArea(
       child: WillPopScope(
         onWillPop: () async {
@@ -79,14 +83,16 @@ class otpScreen extends StatelessWidget {
                         : 'images/otpDark.png'),
               ),
 
-              Container(
-                margin: EdgeInsets.only(left: 40.w, top: 195.h),
-                child: Text(
-                  "invalid otp,please enter a valid otp",
-                  style: GoogleFonts.inriaSans(
-                      color: AlastorColors.red2, fontSize: 11),
-                ),
-              ),
+              !isVerified
+                  ? Container(
+                      margin: EdgeInsets.only(left: 40.w, top: 195.h),
+                      child: Text(
+                        "invalid otp,please enter a valid otp",
+                        style: GoogleFonts.inriaSans(
+                            color: AlastorColors.red2, fontSize: 11),
+                      ),
+                    )
+                  : Container(),
 
               GestureDetector(
                 onTap: () async {
@@ -98,6 +104,9 @@ class otpScreen extends StatelessWidget {
                     Navigator.pushNamed(context, '/404');
                   } else {
                     print("Otp invalid");
+                    setState(() {
+                      isVerified = false;
+                    });
                   }
                 },
                 child: Container(
@@ -139,6 +148,5 @@ class otpScreen extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

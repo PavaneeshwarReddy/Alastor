@@ -4,6 +4,7 @@ import 'package:alastor/Controllers/otpScreenApi.dart';
 import 'package:alastor/Themes/colors.dart';
 import 'package:alastor/Themes/styles.dart';
 import 'package:alastor/Themes/themes.dart';
+import 'package:alastor/Widgets/SnackBarWidget.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -128,11 +129,22 @@ class _EnterPhonenoState extends State<EnterPhoneno> {
                 onTap: () async {
                   bool otpSent = await completeOtpRequest
                       .sendOtpTPhoneNo(dialcode + _phoneNo.text.toString());
+
                   otpSent
                       ? Navigator.pushNamed(context, '/otpscreen', arguments: {
                           'phoneno': dialcode + _phoneNo.text.toString()
                         })
                       : print("Not sent");
+                  final snackbar = SnackBar(
+
+                    content: CustomSnackBar(),
+                    backgroundColor: Colors.transparent,
+                    margin: EdgeInsets.all(0),
+                    behavior: SnackBarBehavior.floating,
+                    padding: EdgeInsets.only(left: 0,right: 0,bottom: 0,top:30.h),
+                    elevation: 0,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
                 },
                 child: Container(
                     width: 95.w,
