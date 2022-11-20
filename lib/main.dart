@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
               '/phoneno': (context) => EnterPhoneno(),
               '/otpscreen': (context) => otpScreen(),
               '/404': (context) => noWifiError(),
-              '/snackbar': (context) => CustomSnackBar()
+
             },
           );
         });

@@ -1,6 +1,8 @@
+import 'package:alastor/Animations/animations.dart';
 import 'package:alastor/Components/otpScreen.dart';
 import 'package:alastor/Components/welcome.dart';
 import 'package:alastor/Controllers/otpScreenApi.dart';
+import 'package:alastor/Themes/AlastorSnackBar.dart';
 import 'package:alastor/Themes/colors.dart';
 import 'package:alastor/Themes/styles.dart';
 import 'package:alastor/Themes/themes.dart';
@@ -24,8 +26,10 @@ class _EnterPhonenoState extends State<EnterPhoneno> {
   CountryCode? countryCode;
   String dialcode = "+91";
 
+
   @override
   Widget build(BuildContext context) {
+    Color _theme=Theme.of(context).scaffoldBackgroundColor;
     return SafeArea(
       child: WillPopScope(
         onWillPop: () async {
@@ -130,18 +134,24 @@ class _EnterPhonenoState extends State<EnterPhoneno> {
                   bool otpSent = await completeOtpRequest
                       .sendOtpTPhoneNo(dialcode + _phoneNo.text.toString());
 
+                  //only for testing purpose
+                  Navigator.pushNamed(context, '/otpscreen', arguments: {
+                    'phoneno': dialcode + _phoneNo.text.toString()
+                  });
                   otpSent
                       ? Navigator.pushNamed(context, '/otpscreen', arguments: {
                           'phoneno': dialcode + _phoneNo.text.toString()
                         })
                       : print("Not sent");
-                  final snackbar = SnackBar(
 
-                    content: CustomSnackBar(),
+                  final snackbar = SnackBar(
+                    duration:const  Duration(milliseconds: 1000),
+                    content:_theme==Colors.white?AlastorSnackBar.lightYellowSnackBar():AlastorSnackBar.DarkYellowSnackBar() ,
                     backgroundColor: Colors.transparent,
                     margin: EdgeInsets.all(0),
                     behavior: SnackBarBehavior.floating,
-                    padding: EdgeInsets.only(left: 0,right: 0,bottom: 0,top:30.h),
+                    padding: EdgeInsets.only(
+                        left: 0, right: 0, bottom: 0, top: 30.h),
                     elevation: 0,
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackbar);

@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 
+import '../Themes/AlastorSnackBar.dart';
 import '../Themes/colors.dart';
 import '../Themes/styles.dart';
 
@@ -22,6 +23,7 @@ class _otpScreenState extends State<otpScreen> {
   bool isVerified = true;
   @override
   Widget build(BuildContext context) {
+    Color _theme=Theme.of(context).scaffoldBackgroundColor;
     final String _phoneno =
         (ModalRoute.of(context)?.settings.arguments as Map)["phoneno"];
     return SafeArea(
@@ -104,6 +106,17 @@ class _otpScreenState extends State<otpScreen> {
                     Navigator.pushNamed(context, '/404');
                   } else {
                     print("Otp invalid");
+                    final snackbar = SnackBar(
+                      duration:const  Duration(milliseconds: 1000),
+                      content:_theme==Colors.white?AlastorSnackBar.lightRedSnackBar():AlastorSnackBar.DarkRedSnackBar() ,
+                      backgroundColor: Colors.transparent,
+                      margin: EdgeInsets.all(0),
+                      behavior: SnackBarBehavior.floating,
+                      padding: EdgeInsets.only(
+                          left: 0, right: 0, bottom: 0, top: 30.h),
+                      elevation: 0,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackbar);
                     setState(() {
                       isVerified = false;
                     });
