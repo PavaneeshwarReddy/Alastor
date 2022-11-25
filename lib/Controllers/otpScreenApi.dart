@@ -27,9 +27,8 @@ class completeOtpRequest {
       }
       return false;
     } catch (error) {
-      print(error);
+      return false;
     }
-    return false;
   }
 
   static Future<bool> verifyOtp(String phoneno, String otp) async {
@@ -52,8 +51,7 @@ class completeOtpRequest {
       }
       return false;
     } catch (error) {
-      print(error);
+      return false;
     }
-    return false;
   }
 }
