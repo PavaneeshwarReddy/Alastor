@@ -100,12 +100,13 @@ class _otpScreenState extends State<otpScreen> {
 
                   GestureDetector(
                     onTap: () async {
-                      print(_pin.text.toString());
-                      bool otpVerified = await completeOtpRequest.verifyOtp(
-                          _phoneno, _pin.text.toString());
 
-                      if (otpVerified) {
-                        Navigator.pushNamed(context, '/404');
+                      print(_pin.text.toString());
+                    //  bool otpVerified = await completeOtpRequest.verifyOtp(
+                      //    _phoneno, _pin.text.toString());
+
+                      if (true) {
+                        Navigator.pushNamed(context, '/username');
                       } else {
                         print("Otp invalid");
                         final snackbar = SnackBar(
@@ -124,6 +125,7 @@ class _otpScreenState extends State<otpScreen> {
                         setState(() {
                           isVerified = false;
                         });
+
                       }
                     },
                     child: Container(

@@ -1,4 +1,5 @@
 import 'package:alastor/Components/404Error.dart';
+import 'package:alastor/Components/Username.dart';
 import 'package:alastor/Components/enterPhoneno.dart';
 import 'package:alastor/Components/otpScreen.dart';
 import 'package:alastor/Themes/themes.dart';
@@ -32,13 +33,14 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             theme: AlastorTheme.LightTheme(),
             darkTheme: AlastorTheme.DarkTheme(),
-            themeMode: ThemeMode.system,
+            themeMode: ThemeMode.dark,
             initialRoute: '/',
             routes: {
               '/': (context) => WelcomeScreen(),
               '/phoneno': (context) => EnterPhoneno(),
               '/otpscreen': (context) => otpScreen(),
               '/404': (context) => noWifiError(),
+              '/username':(context)=>UsernameScreen(),
 
             },
           );

@@ -17,6 +17,7 @@ class AlastorColors {
   static const yellow1 = Color.fromRGBO(248, 187, 21, 1);
   static const yellow3 =Color.fromRGBO(248, 148, 59, 1);
   static const blue1 = Color.fromRGBO(84, 125, 190, 1);
+  static const blue2 = Color.fromRGBO(140, 187, 241, 1);
   static const checkBoxWhite = Color.fromRGBO(0, 0, 0, 0.5);
   static const checkBoxDark = Color.fromRGBO(255, 255, 255, 0.5);
 }

@@ -136,6 +136,10 @@ class _EnterPhonenoState extends State<EnterPhoneno> {
                       ),
                       GestureDetector(
                         onTap: () async {
+                          Navigator.pushNamed(context, '/otpscreen',
+                              arguments: {
+                                'phoneno': dialcode + _phoneNo.text.toString()
+                              });
                           setState(() {
                             _isLoading=true;
                           });
